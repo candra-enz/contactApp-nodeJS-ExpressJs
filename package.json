@@ -1,0 +1,29 @@
+{
+  "name": "contactapp-nodejs-expressjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/candra-enz/contactApp-nodeJS-ExpressJs.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "javascript"
+  ],
+  "author": "candra kartika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/candra-enz/contactApp-nodeJS-ExpressJs/issues"
+  },
+  "homepage": "https://github.com/candra-enz/contactApp-nodeJS-ExpressJs#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0"
+  }
+}
