@@ -1,26 +1,28 @@
-
-      
-            <h2><p>
-                  <%= title %>
-            </p></h2>
+<div class="container">
+<table class="table">
 
 
-            <p><%= tagline %></p>
-         
+      <thead>
+            <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Nama</th>
+                  <th scope="col">No HP</th>
+                  <th scope="col">Actiion</th>
+            </tr>
+      </thead>
 
-            <ul>
-                  <% mascots.forEach(function(mascot) { %>
-                        <li>
-                              <strong>
-                                    <%= mascot.name %>
-                              </strong>
-                              representing <%= mascot.organization %>, born <%= mascot.birth_year %>
-                        </li>
-                        <% }); %>
-            </ul>
-
+   
+      <tbody>
+            <% contacts.forEach((contact,i) =>  { %>
+             
            
-        
-    
-  
-
+            <tr>
+                  <th scope="row"><%=i+1%></th>
+                  <td><%=contact.name %></td>
+                  <td><%=contact.noHP %></td>
+                  <td></td>
+            </tr>
+<% }) %>
+      </tbody>
+</table>
+</div>

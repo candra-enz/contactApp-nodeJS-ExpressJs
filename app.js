@@ -12,10 +12,10 @@ app.get('/', (req, res) => {
 
    
 
-    const mascots = [
-        { name: 'Candra', organization: "DigitalOcean", birth_year: 2012 },
-        { name: 'Marsha', organization: "Linux", birth_year: 1996 },
-        { name: 'Jinan', organization: "Docker", birth_year: 2013 }
+    const contacts = [
+        { name: 'Candra', noHP: 089245670987 , email: "candra@gmail.com"},
+        { name: 'Marsha', noHP: 089245670987, email: "marsha@gmail.com" },
+        { name: 'Jinan', noHP: 089245670987, email:"jinan@gmail.com" }
     ];
     const tagline = "No programming concept is complete without a cute animal mascot.";
     const title= "Home";
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
     res.render('pages/index', {
         layout: 'layout/main-layout',
         title: title,
-        mascots: mascots,
+        contacts: contacts,
         tagline: tagline,
         
     });
