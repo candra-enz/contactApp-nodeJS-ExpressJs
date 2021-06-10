@@ -31,11 +31,11 @@ const loadContacts = () => {
 }
 
 
-
+//cari contact
 const findContact = (name) => {
 
     const contacts = loadContacts()
-    const contact = contacts.find((contact) => contact.name == name)
+    const contact = contacts.find((contact) => contact.name.toLowerCase() === name.toLowerCase())
     return contact;
 
 }
@@ -54,7 +54,7 @@ const cekDuplikat = (name) =>{
 }
 
 
-const addContact = (contact,name) => {
+const addContact = (contact) => {
 
     const contacts = loadContacts();
    
@@ -82,28 +82,18 @@ const addContact = (contact,name) => {
     saveContacts(contacts)
 };
 
+const deleteContact = (name) =>{
+const contacts = loadContacts();
+const filterContacts = contacts.filter((contact) => contact.name !== name)
+    saveContacts(filterContacts)
+}
 
 
 
 
 
 
-const deleteContact = (nama) => {
-    const contacts = loadContacts();
-
-    const newContacts = contacts.filter((contact) => contact.nama.toLowerCase() !== nama.toLowerCase());
-
-    if (contacts.length == newContacts.length) {
-        console.log(`${nama}  Tidak Ditemukan`);
-        return false
-    };
-
-    fs.writeFileSync('data/contacts.json', JSON.stringify(newContacts));
-    console.log(`Data contact ${nama}, Berhasil di hapus`);
-
-};
-
-module.exports = { loadContacts, findContact, addContact, cekDuplikat }
+module.exports = { deleteContact, loadContacts, findContact, addContact, cekDuplikat }
 
 
 

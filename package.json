@@ -29,5 +29,8 @@
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.17.2",
     "express-validator": "^6.11.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.28.0"
   }
 }
