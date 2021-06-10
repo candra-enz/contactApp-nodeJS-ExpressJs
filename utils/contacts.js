@@ -89,11 +89,21 @@ const filterContacts = contacts.filter((contact) => contact.name !== name)
 }
 
 
+const updateContacts = (contactBaru) => {
+    const contacts = loadContacts();
+    //hiangkan contgaknama yang namanya dgn old nama
+    const filterContacts = contacts.filter((contact) => contact.name !== contactBaru.oldName)
+   delete contactBaru.oldName;
+    filterContacts.push(contactBaru);
+    saveContacts(filterContacts);
+   
+}
 
 
 
 
-module.exports = { deleteContact, loadContacts, findContact, addContact, cekDuplikat }
+
+module.exports = { updateContacts, deleteContact, loadContacts, findContact, addContact, cekDuplikat }
 
 
 

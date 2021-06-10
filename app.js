@@ -4,10 +4,11 @@ const cookieParser = require('cookie-parser')
 const flash = require('connect-flash')
 
 const expressLayouts = require('express-ejs-layouts')
-const { deleteContact, loadContacts, findContact, addContact, cekDuplikat, } = require('./utils/contacts')
+const { updateContacts , deleteContact, loadContacts, findContact, addContact, cekDuplikat, } = require('./utils/contacts')
 const app = express()
 const port = 3000;
 const { body, validationResult, check } = require('express-validator');
+const { response } = require('express')
 
 //konfigurasi flash
 app.use(cookieParser('secret'));
@@ -96,7 +97,7 @@ app.post('/contact',
             addContact(req.body)
             //kirim flash massage
             req.flash('msg', 'Data Contact berhasil ditambahkan');
-            res.redirect('/addContact')
+            res.redirect('/contact')
         }
     });
 
@@ -105,17 +106,71 @@ app.post('/contact',
 app.get('/contact/delete/:name', (req, res) => {
 
     const contact = findContact(req.params.name);
-          
     // jika contact tidak ada
     if (!contact) {
         res.status(404);
         res.send('<h1>404</h1>');
     } else {
-       deleteContact(req.params.name)
+        deleteContact(req.params.name)
         req.flash('msg', 'Data Contact berhasil dihapus');
         res.redirect('/contact')
     }
 })
+
+
+//edtit data
+
+app.get('/contact/edit/:name', (req, res) => {
+    const title = "Ubah Contact";
+
+
+    const contact = findContact(req.params.name)
+    res.render('pages/editContact', {
+        layout: 'layouts/main-layout',
+        title: title,
+        contact,
+
+    })
+});
+
+
+
+
+app.post('/contact/update',
+    [
+        body('name').custom((value,{req}) => {
+            const duplikat = cekDuplikat(value);
+
+            
+            if (value !== req.body.oldName && duplikat) {
+                throw new Error('Name sudah digunakan');
+            }
+            return true;
+        }),
+        check('email', 'Email tidak valid').isEmail(),
+        check('nohp', 'Nomor telephon tidak valid').isMobilePhone('id-ID')
+    ], (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            // return res.status(400).json({ errors: errors.array() });
+            const title = "Edit Contact";
+            res.render('pages/editContact', {
+                layout: 'layouts/main-layout',
+                title: title,
+                errors: errors.array(),
+                contact: req.body,
+            })
+        } else {
+          
+            updateContacts(req.body)
+            //kirim flash massage
+            req.flash('msg', 'Data Contact berhasil diubah');
+            res.redirect('/contact')
+        }
+    });
+
+
+
 
 
 

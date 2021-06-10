@@ -1,0 +1,35 @@
+<div class="container">
+
+
+    <% if (typeof errors !='undefined' ) { %>
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                <% errors.forEach(error=> { %>
+                    <li>
+                        <%= error.msg %>
+                    </li>
+                    <% }) %>
+            </ul>
+        </div>
+        <% } %>
+
+            <form method="POST" action="/contact/update">
+                <input type="hidden" name="oldName" value="<%= (contact.oldName) ? contact.oldName : contact.name %>">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="<%= contact.name %>">
+                    <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"  value="<%= contact.email %>">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="nohp" class="form-label">Number Phone</label>
+                    <input type="nohp" class="form-control" id="nohp" name="nohp"  value="<%= contact.nohp %>">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </form>
+</div>
