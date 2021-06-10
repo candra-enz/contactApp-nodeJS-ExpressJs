@@ -1,11 +1,58 @@
+<div class="container-sm">
+
+    <% if (msg.length != 0) { %>
+        <div class="alert alert-success" role="alert">
+            <%= msg %> 
+        </div>
+     
+    <% } %>
+
+    <a href="contact/addContact"> <i class="bi bi-plus-square-fill" style="font-size: 1.5rem; color: cornflowerblue;"></i></a>
+
+    <table class="table table-borderless er table-sm">
 
 
-  
-        <h2>
-            <p>
-                <%= title %>
-            </p>
-      
-      
- 
+        <thead>
+            <tr>
+                <th></th>
+                <th class="table-secondary" scope="col">No</th>
+                <th class="table-secondary" scope="col">Nama</th>
+                <th class="table-secondary" scope="col">No HP</th>
+                <th></th>
+           
+            </tr>
+        </thead>
 
+
+        <tbody>
+
+            <% contacts.forEach((contact,i)=> { %>
+
+                <tr>
+                    <th class="text-center">
+                        <a href="" onclick="return confirm('Anda yakin mau menghapus user ini ?')">
+                            <i class="bi bi-x-circle-fill" style="color: rgb(175, 32, 32);"></i>
+                        </a>
+                    </th>
+                    <td class="table-light" scope="row">
+                        <%= i+1 %>
+                    </td>
+                    <td class="table-light">
+                        <%= contact.name %>
+                    </td>
+                    <td class="table-light">
+                        <%=contact.nohp %>
+                    </td>
+                    
+                    <th class="text-center" class="text-center">
+                        <a href="contact/<%=contact.name %>"><i class="bi bi-eye-fill"
+                                style=" color: rgb(38, 194, 33);"></i>
+                        </a>
+                    </th>
+
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+</div>
